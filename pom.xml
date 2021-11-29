@@ -17,6 +17,7 @@
 		<java.version>1.8</java.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<app.profiles>local,dev</app.profiles>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -50,6 +51,7 @@
 				<configuration>
 					<excludes>
 						<exclude>
+							<profiles>${app.profiles}</profiles>
 							<groupId>com.foo</groupId>
 							<artifactId>bar</artifactId>
 							<groupId>org.projectlombok</groupId>
@@ -62,6 +64,48 @@
 								<web>java $JAVA_OPTS -cp target/classes:target/dependency/* Master</web>
 							</processTypes>
 							<jdkVersion>1.8</jdkVersion>
+							<pluginRepositories>
+								<pluginRepository>
+									<id>spring-snapshots</id>
+									<url>https://repo.spring.io/snapshot</url>
+								</pluginRepository>
+								<pluginRepository>
+									<id>spring-milestones</id>
+									<url>https://repo.spring.io/milestone</url>
+								</pluginRepository>
+							</pluginRepositories>
+							<!-- Inherit defaults from Spring Boot -->
+							<parent>
+								<groupId>org.springframework.boot</groupId>
+								<artifactId>spring-boot-starter-parent</artifactId>
+								<version>2.6.1</version>
+							</parent>
+							<dependencyManagement>
+								<dependencies>
+									<!-- Override SLF4J provided by Spring Boot -->
+									<dependency>
+										<groupId>org.slf4j</groupId>
+										<artifactId>slf4j-api</artifactId>
+										<version>1.7.30</version>
+									</dependency>
+									<!-- Override Spring Data release train provided by Spring Boot -->
+									<dependency>
+										<groupId>org.springframework.data</groupId>
+										<artifactId>spring-data-releasetrain</artifactId>
+										<version>2020.0.0-SR1</version>
+										<type>pom</type>
+										<scope>import</scope>
+									</dependency>
+									<dependency>
+										<groupId>org.springframework.boot</groupId>
+										<artifactId>spring-boot-dependencies</artifactId>
+										<version>2.6.1</version>
+										<type>pom</type>
+										<scope>import</scope>
+									</dependency>
+								</dependencies>
+							</dependencyManagement>
+
 						</exclude>
 					</excludes>
 				</configuration>
