@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api")
+@CrossOrigin
 public class SugestionsController {
     private final SugestionsService sugestionsService;
     public SugestionsController(@Autowired SugestionsService sugestionsService){
