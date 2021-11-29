@@ -1,1 +1,1 @@
-java $JAVA_OPTS -cp target/classes:target/dependency/* Hero
+java $JAVA_OPTS -cp target/classes:target/dependency/* heroku.app
