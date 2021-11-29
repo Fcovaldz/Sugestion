@@ -1,1 +1,0 @@
-web:java -jar -Dspring.profiles.active=pdn -Dserver.port=$PORT build/libs/sugestion-1.0.jar
