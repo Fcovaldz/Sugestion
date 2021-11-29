@@ -50,6 +50,8 @@
 				<configuration>
 					<excludes>
 						<exclude>
+							<groupId>com.foo</groupId>
+							<artifactId>bar</artifactId>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 							<groupId>com.heroku.sdk</groupId>
